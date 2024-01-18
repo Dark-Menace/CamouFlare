@@ -42,7 +42,7 @@
                 <textarea id="decodedMessage" class="form-control" rows="4" ng-model="decodedMessage" readonly></textarea>
             </div>
             <button class="btn btn-success" ng-click="decodeMessage($event)" ng-disabled="buttonDisabled">Decode</button>
-            <button class="btn btn-danger" ng-click="resetPage()" ng-disabled="!selectedImage">Reset</button>
+            <button class="btn btn-danger" ng-click="resetPage()" ng-disabled="buttonDisabled">Reset</button>
         </div>
     </div>
 </div>
