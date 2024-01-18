@@ -5,8 +5,8 @@ angular.module('steganographyApp', [])
             $scope.decodedMessage = '';
             $scope.errorMessage='';
             $scope.showAlert = false;
-            $scope.textAreaDisabled=false;
-            $scope.buttonDisabled=false;
+            $scope.textAreaDisabled=true;
+            $scope.buttonDisabled=true;
 
             $scope.closeAlert=function(){
                 $scope.showAlert=false;
@@ -17,6 +17,8 @@ angular.module('steganographyApp', [])
 
             $scope.handleImageSelect = function() {                
                 $scope.selectedImage = document.getElementById('imageInput').files[0];// Handle image selection if needed
+                $scope.textAreaDisabled=false;
+                $scope.buttonDisabled=false;
             };
 
             $scope.resetPage = function () {
