@@ -29,9 +29,9 @@
             </div>
             <div class="mb-3">
                 <label for="messageInput">Enter Message:</label>
-                <textarea id="messageInput" class="form-control" rows="4" ng-model="message" ng-disabled="!selectedImage"></textarea>
+                <textarea id="messageInput" class="form-control" rows="4" ng-model="message" ng-disabled=" textAreaDisabled"></textarea>
             </div>
-            <button class="btn btn-success" ng-click="encodeMessage()" ng-disabled="!selectedImage">Encode</button>
+            <button class="btn btn-success" ng-click="encodeMessage()" ng-disabled="buttonDisabled">Encode</button>
       
         </div>
 
@@ -41,7 +41,7 @@
                 <label for="decodedMessage">Decoded Message:</label>
                 <textarea id="decodedMessage" class="form-control" rows="4" ng-model="decodedMessage" readonly></textarea>
             </div>
-            <button class="btn btn-success" ng-click="decodeMessage($event)" ng-disabled="!selectedImage">Decode</button>
+            <button class="btn btn-success" ng-click="decodeMessage($event)" ng-disabled="buttonDisabled">Decode</button>
             <button class="btn btn-danger" ng-click="resetPage()" ng-disabled="!selectedImage">Reset</button>
         </div>
     </div>
