@@ -66,4 +66,4 @@ def decode():
     return jsonify({"result":"Decoding Successful", "dataFound":obj.decoded_message})
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
