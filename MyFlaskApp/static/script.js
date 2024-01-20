@@ -31,7 +31,7 @@ angular.module('steganographyApp', [])
                 formData.append('textData', $scope.message);
     // Make an HTTP POST request to Flask
                 $http.post('http://127.0.0.1:5000/encode', formData, {
-                Accept: 'application/json,application/octet-stream',
+                responseType: 'arraybuffer',
                 transformRequest: angular.identity,
                 headers: { 'Content-Type': undefined }  // Use undefined instead of formData
                 })
@@ -42,13 +42,21 @@ angular.module('steganographyApp', [])
         // Check if the response contains an image 
                 if (response.data) {
                 downloadImage(response.data, 'processed_image.png');
+                console.log(response.data.result);
                 }
             })
                 .catch(function(error) {
         // Handle error
-                console.error('Error:', error);
-                console.error(error.data.result);
-                $scope.errorMessage= error.data.result;
+                // Convert the buffer stream to a string
+                var jsonString = String.fromCharCode.apply(null, new Uint8Array(error.data));
+
+                // Parse the JSON string to a JavaScript object
+                var jsonData = JSON.parse(jsonString);
+
+                    
+                console.error('Error:', jsonData.result);
+                //console.error(error.data.result);
+                $scope.errorMessage= jsonData.result;
                 $scope.showAlert = true;
                 $scope.textAreaDisabled=true;
                 $scope.buttonDisabled=true;
@@ -60,7 +68,7 @@ angular.module('steganographyApp', [])
 
     // Create a downloadable link
             var link = document.createElement('a');
-            link.href = URL.createObjectURL(blob);
+            link.href = window.URL.createObjectURL(blob);
             link.download = filename;
             document.body.appendChild(link);
 
