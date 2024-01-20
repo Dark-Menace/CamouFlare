@@ -39,10 +39,11 @@ def encode():
     uploaded_filename = os.path.join(app.config['UPLOAD_FOLDER'], image_file.filename)
     image_file.save(f"{uploaded_filename}")
 
-
     obj=steganography.Steganography(1,uploaded_filename,encoded_message)
     
-    return send_file(uploaded_filename, mimetype='image/png', as_attachment=True, download_name='processed_image.png')
+    Output_filename = os.path.join(app.config['UPLOAD_FOLDER'], "Output.png")
+
+    return send_file(Output_filename, mimetype='image/png', as_attachment=True, download_name='processed_image.png')
 
     
 
@@ -59,11 +60,10 @@ def decode():
 
     uploaded_filename = os.path.join(app.config['UPLOAD_FOLDER'], image_file.filename)
     image_file.save(f"{uploaded_filename}")
-
     
     obj=steganography.Steganography(0,uploaded_filename)
     # Return the result to the AngularJS front-end
     return jsonify({"result":"Decoding Successful", "dataFound":obj.decoded_message})
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
