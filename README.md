@@ -55,7 +55,7 @@ Go to the CLI directory:
 Run the flask server :
 
 ```bash
-  flask run
+  python app.py
 ```
 
 #### Opening in browser : ####
@@ -72,7 +72,7 @@ On macOS:
   open http://localhost:5000
 ```
 
-On Linux:
+On Windows:
 
 ```bash
   start http://localhost:5000
