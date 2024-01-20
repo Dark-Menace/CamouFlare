@@ -6,7 +6,6 @@ import numpy as np
 class Steganography:
     
     def __init__(self,choice_bool,file_path,input_msg="")->None:
-      
         self.data_ip=input_msg
         self.img_path=file_path
         self.img=cv.imread(self.img_path)
@@ -20,6 +19,7 @@ class Steganography:
             self.decoded_message=self.extract_data()
    
     def hide_data(self)->None: # Evoke encode method and create a new image instance with data encoded. 
+
        
         self.data_len=len(self.data_ip)
 
@@ -29,12 +29,15 @@ class Steganography:
             raise Exception("Data length is 0.")
        
         self.encode()
-        print(self.img_path)
+        
+        l=self.img_path.split('/')
+        self.img_path='/'.join(l[:-1])
+        self.img_path+="/Output.png"
+        
         cv.imwrite(self.img_path,self.img)
         print("Data encoded successfully!")
     
     def extract_data(self)->str: # Evoke decode method and print the hidden data.
-      
         bin_decode=self.decode()
         print(bin_decode)
         hidden_data=""
@@ -87,9 +90,11 @@ class Steganography:
                         row+=1
                         col=0
             current_data_len+=1
+        
+       
+
 
     def decode(self)->list:
-      
         binary_list=[]
         data=""
         row:int=0  
